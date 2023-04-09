@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Comment, fetchPostById, fetchPostCommentsList, fetchPostList, Post} from "./resources/posts";
 import {MantineSolution} from "./solutions/MantineSolution";
+import {AntSolution} from "./solutions/AntSolution";
 
-function App() {
+export function App() {
     const [posts, setPosts] = useState<Post[]>([])
     const [postDetail, setPostDetail] = useState<Post>()
     const [comments, setComments] = useState<Comment[]>([])
@@ -26,6 +27,13 @@ function App() {
 
     return (
         <div>
+            <AntSolution
+                posts={posts}
+                postDetail={postDetail}
+                loadPost={loadPost}
+                loadComments={loadComments}
+                comments={comments}
+            />
             <MantineSolution
                 posts={posts}
                 postDetail={postDetail}
@@ -36,5 +44,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

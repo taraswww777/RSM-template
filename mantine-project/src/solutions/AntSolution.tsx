@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Badge, Button, Card, Grid, Group, MantineProvider, Mark, Text} from '@mantine/core';
-import { SolutionProps } from './types';
+import {SolutionProps} from "./types";
 
-export const MantineSolution: FC<SolutionProps> = ({posts, loadPost, postDetail, loadComments, comments}) => (
+export const AntSolution: FC<SolutionProps> = ({posts, loadPost, postDetail, loadComments, comments}) => (
     <MantineProvider>
         <Grid>
             <Grid.Col span={12}>
