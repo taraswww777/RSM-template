@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {SolutionProps} from "./types";
 import {Layout, Button, Card, Badge, Empty} from "antd";
+import {DetailPost} from "../components/DetailPost";
 
 export const AntSolution: FC<SolutionProps> = ({posts, loadPost, postDetail, loadComments, comments}) => (
     <Layout>
@@ -19,25 +20,29 @@ export const AntSolution: FC<SolutionProps> = ({posts, loadPost, postDetail, loa
         </Layout.Sider>
         <Layout.Content>
             {postDetail?.id ? (
-                <div key={postDetail?.id}>
-                    {postDetail?.body}
-                    <Button onClick={() => loadComments(postDetail?.id)}>
-                        see comment
-                    </Button>
-
-                    <div>
-                        {comments.map(({id, name, body, email}) => (
-                            <Badge.Ribbon
-                                key={id}
-                                text={id}
-                                color="red">
-                                <Card title={name} size="small">
-                                    {body}
-                                </Card>
-                            </Badge.Ribbon>
-                        ))}
-                    </div>
-                </div>
+                <DetailPost
+                    key={postDetail?.id}
+                    post={<>
+                        {postDetail?.body}
+                        <Button onClick={() => loadComments(postDetail?.id)}>
+                            see comment
+                        </Button>
+                    </>}
+                    comments={
+                        <>
+                            {comments.map(({id, name, body, email}) => (
+                                <Badge.Ribbon
+                                    key={id}
+                                    text={id}
+                                    color="red">
+                                    <Card title={name} size="small">
+                                        {body}
+                                    </Card>
+                                </Badge.Ribbon>
+                            ))}
+                        </>
+                    }
+                />
             ) : (
                 <Empty/>
             )}
