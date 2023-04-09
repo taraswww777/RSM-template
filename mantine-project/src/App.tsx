@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import {fetchPostById, fetchPostList, Post} from "./resources/posts";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [posts, setPosts] = useState<Post[]>([])
+    const [postDetail, setPostDetail] = useState<Post>()
+
+    useEffect(() => {
+        fetchPostList().then(setPosts)
+    }, []);
+
+    const loadPost = (postId: Post['id']) => {
+        fetchPostById(postId).then(setPostDetail)
+    }
+
+    return (
+        <div>
+            <ol>
+                {posts.map(({id, title}) => (
+                    <li key={id} onClick={() => loadPost(id)}>{title}</li>
+                ))}
+            </ol>
+            <div>
+                {postDetail?.body}
+            </div>
+        </div>
+    );
 }
 
 export default App;
