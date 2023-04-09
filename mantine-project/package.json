@@ -40,5 +40,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@emotion/react": "11.10.6",
+    "@mantine/core": "6.0.6",
+    "@mantine/hooks": "6.0.6"
   }
 }
